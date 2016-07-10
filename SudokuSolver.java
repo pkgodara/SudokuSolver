@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sudokusolver;
 
 import java.io.*;
@@ -19,7 +15,7 @@ class SudokuSolver implements ActionListener {
     
     
     static JFrame f;
-    //JButton[][] sudoku = new JButton[9][9];
+    
     JPanel cont,p,p1,p2;
     static JButton b,b1;
     static int x,y,size = 9 ;
@@ -36,23 +32,7 @@ class SudokuSolver implements ActionListener {
         
         cont = new JPanel();
         cont.setLayout(new BoxLayout(cont,BoxLayout.Y_AXIS));
-        /*
-        p2 = new JPanel();
         
-        
-        rb1 = new JRadioButton("sudoku 9X9");
-        
-        rb2 = new JRadioButton("sudoku 16x16",true);
-        
-        ButtonGroup bg = new ButtonGroup();
-        
-        bg.add(rb1);
-        bg.add(rb2);
-        
-        p2.add(rb1);
-        p2.add(rb2);
-        
-        cont.add(p2);*/
         
         
         p = new JPanel(new GridLayout(size,size));           //has fixed size
@@ -62,8 +42,7 @@ class SudokuSolver implements ActionListener {
         {
             for(int j = 0 ; j < size ; j++ )
             {
-                //sudoku[i][j] = new JButton("0");
-                //(sudoku[i][j]).addActionListener(this);
+                
                 tf[i*size + j] = new JTextField("");
                 p.add(tf[i*size + j]);
             }
@@ -71,7 +50,7 @@ class SudokuSolver implements ActionListener {
         
         coloringGrid();               //color boxes differently.
         
-       // p = new JPanel(new GridBagLayout());                   //has dynamic sizes
+        
         
         
         
@@ -99,14 +78,7 @@ class SudokuSolver implements ActionListener {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    /*DocumentListener dl = new DocumentListener()
-    {
-        public void update(DocumentEvent de)
-        {
-            
-        }
-    } ;
-    */
+    
     
     
     
@@ -138,29 +110,7 @@ class SudokuSolver implements ActionListener {
     
     
     public void actionPerformed(ActionEvent e)
-    {/*
-        if( rb1.isSelected() )
-        {
-            size = 9;
-        }
-        if( rb2.isSelected() )
-        {
-            //size = 16;
-            SwingWorker<String,String> sw = new SwingWorker<String,String>()
-            {
-                @Override
-                protected String doInBackground() throws Exception
-                {
-                    size = 16;
-                    //p.revalidate();
-                    //p.repaint();
-                    //cont.repaint();
-                    f.repaint();
-                    return "";
-                }
-            };
-        }
-        */
+    {
         if( e.getSource() == b)
         {
             //using swingWorker for backgrounding thread
@@ -310,13 +260,8 @@ class SudokuSolver implements ActionListener {
             {
                 //make assignment
                 sudoku[row][col] = n ;
-                //print output
-                //(tf[(row)*size + col]) = new JTextField(Integer.toString(n));
+                //print output;
                 (tf[(row)*size + col]).setText(Integer.toString(n));
-                //(tf[(row)*size + col]).revalidate();
-                //(tf[(row)*size + col]).setVisible(true);
-                //(tf[(row)*size + col]).repaint();
-                //f.setVisible(true);
                 try
                 {
                     //Thread.sleep(100);     // milli-second
@@ -350,7 +295,6 @@ class SudokuSolver implements ActionListener {
                 if( sudoku[i][j] < 0 || sudoku[i][j] > size )
                 {
                     
-                    //JOptionPane.showMessageDialog(f,"Input should be 1 to 16 only . problem in ("+ (i+1)+","+(j+1)+")") ;
                     return false ;
                 }
                 
@@ -381,7 +325,6 @@ class SudokuSolver implements ActionListener {
         {
             if( col != c && sudoku[r][col] == n )
             {
-                //JOptionPane.showMessageDialog(f,"used in row: ("+(r+1)+","+(c+1)+") ");
                 return true;
             }
         }
@@ -399,7 +342,6 @@ class SudokuSolver implements ActionListener {
         {
             if( row != r && sudoku[row][c] == n )
             {
-                //JOptionPane.showMessageDialog(f,"used in column : ("+(r+1)+","+(c+1)+") ");
                 return true;
             }
         }
@@ -422,7 +364,6 @@ class SudokuSolver implements ActionListener {
             {
                 if( r_st+i != r && c_st+j != c && sudoku[r_st+i][c_st+j] == n )
                 {
-                    //JOptionPane.showMessageDialog(f,"used in box : ("+(r+1)+","+(c+1)+") =>"+(r_st)+" , "+ (c_st) +" ij"+i+","+j );
                     return true;
                 }
             }
